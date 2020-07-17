@@ -29,8 +29,16 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="class-md-12" style="border: 1px solid #ccc;padding: 10px;text-align: center;">
-                        <b style="">Abandoned Call Log</b>
-                        <button class="btn btn-sm btn-info float-right" id="export" >Export</button>         
+                        <button class="btn btn-sm btn-info float-left" id="export" >Export</button>     
+                        <b style="text-transform: uppercase;"><u>Abandoned Call Log</u></b>
+                      
+
+                        <span class="form-horizontal float-right">
+                            Search : 
+                            <input name="search" id="search"/>
+                            
+                        </span>
+                       
                     </div>
 
 
@@ -55,8 +63,7 @@
 
         <div style="margin:10px;"></div>
         
-        <script src="/liveData.js"></script>
-        <script src="/tableToExcel.js"></script>
+        <script src="/liveData.js"></script>        
         <script src="/jquery.tabletocsv.js"></script>
         <script src="/helperUI.js"></script>
     </body>
