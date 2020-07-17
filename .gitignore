@@ -1,2 +1,7 @@
 node_modules/
 .gitignore
+extra.js
+index.html
+index.js
+server.js
+server.app

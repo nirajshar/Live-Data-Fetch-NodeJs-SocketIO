@@ -20,3 +20,4 @@ exports.get_time_diff = function (datetime) {
     var date_diff = new Date(milisec_diff);
     return days + " Days : " + date_diff.getHours() + " Hours : " + date_diff.getMinutes() + " Minutes : " + date_diff.getSeconds() + " Seconds";
 }
+

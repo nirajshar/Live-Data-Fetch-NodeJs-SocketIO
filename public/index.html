@@ -1,37 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js" ></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js" ></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Web Socket</title>
-</head>
-<body>
-    <!-- <h1>Hello, World of sockets</h1> -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+        <title>Web Socket</title>
+        <style>
+            .table-striped > tbody > tr:nth-child(odd) > td, .table-striped > tbody > tr:nth-child(odd) > th {
+                background-color: #86cfda;
+            }
+            .table-striped > tbody > tr:nth-child(odd):hover > td, .table-striped > tbody > tr:nth-child(odd):hover > th {
+                background-color: #d5dad9;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div style="margin:10px;"></div>
 
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Elapsed Time</th>
-                        </tr>
-                    </thead>
-                    <tbody id='tbody'>
-                        
-                    </tbody>
-                </table>
+        <!-- <h1>Hello, World of sockets</h1> -->
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="class-md-12" style="border: 1px solid #ccc;padding: 10px;text-align: center;">
+                        <b style="">Abandoned Call Log</b>
+                        <button class="btn btn-sm btn-info float-right" id="export" >Export</button>         
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover" style="text-align:center" id="Abandoned_Call_Log">
+                            <thead>                                                               
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Documents</th>
+                                    <th>Date Created</th>
+                                    <th>Elapsed Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id='tbody'>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="/liveData.js"></script>
-</body>
+
+        <div style="margin:10px;"></div>
+        
+        <script src="/liveData.js"></script>
+        <script src="/tableToExcel.js"></script>
+        <script src="/jquery.tabletocsv.js"></script>
+        <script src="/helperUI.js"></script>
+    </body>
 </html>

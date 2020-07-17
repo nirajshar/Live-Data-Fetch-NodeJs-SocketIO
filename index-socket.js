@@ -61,6 +61,10 @@ io.on('connection', function (socket) {
                 for (var i = 0; i < rows.length; i++) {
 
                     rows[i]['time_elapsed'] = helper.get_time_diff(rows[i]['date_created']);
+                    rows[i]['date_created'] =   new Date(rows[i]['date_created']).toISOString().
+                                                replace(/T/, ' ').      // replace T with a space
+                                                replace(/\..+/, '') ;
+
                     // console.log(JSON.stringify(row, null, 2));
                     // rows.push(row['time_elapsed']);
 

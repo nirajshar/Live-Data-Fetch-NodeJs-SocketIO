@@ -7,11 +7,16 @@ socket.on('getLiveData', function (data) {
     for (var i = 0; i < data.length; i++) {
         html += "<tr>";
         html += "<td>" + data[i].name + "</td>";
+        html += "<td>" + data[i].documents + "</td>";
+        html += "<td>" + data[i].date_created + "</td>";
         html += "<td>" + data[i].time_elapsed + "</td>";
         html += "</tr>";
     }
     document.getElementById("tbody").innerHTML = html;
 });
+
+
+
 
 
 
