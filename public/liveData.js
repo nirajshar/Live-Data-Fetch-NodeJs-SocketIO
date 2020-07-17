@@ -15,6 +15,7 @@ socket.on('getLiveData', function (data) {
     document.getElementById("tbody").innerHTML = html;
 });
 
+$('#search').tooltip({trigger: 'manual'}).tooltip('show');
 
 $('#search').keyup(function() {    
 
@@ -26,6 +27,8 @@ $('#search').keyup(function() {
 
     if( filter != '') {       
         socket.off('getLiveData');
+        // $('#search').tooltip({trigger: 'manual'}).tooltip('show');
+        
     } else {
         socket.on('getLiveData', function (data) {
             console.log('%j', data);
@@ -62,6 +65,10 @@ $('#search').keyup(function() {
     }
 });
 
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
 
 
