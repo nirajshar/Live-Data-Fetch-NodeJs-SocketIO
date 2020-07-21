@@ -1,19 +1,33 @@
 // Make connection 
 var socket = io.connect('http://localhost:4000');
 
-socket.on('getLiveData', function (data) {
-    console.log('%j', data);
-    var html = '';
-    for (var i = 0; i < data.length; i++) {
-        html += "<tr>";
-        html += "<td>" + data[i].name + "</td>";
-        html += "<td>" + data[i].documents + "</td>";
-        html += "<td>" + data[i].date_created + "</td>";
-        html += "<td>" + data[i].time_elapsed + "</td>";
-        html += "</tr>";
+$('#listen-active').change(function(event) {
+    
+    if( $('#listen-active').is(':checked') ) {
+        
+        socket.on('getLiveData', function (data) {
+            console.log('%j', data);
+            var html = '';
+            for (var i = 0; i < data.length; i++) {
+                html += "<tr>";
+                html += "<td>" + data[i].name + "</td>";
+                html += "<td>" + data[i].documents + "</td>";
+                html += "<td>" + data[i].date_created + "</td>";
+                html += "<td>" + data[i].time_elapsed + "</td>";
+                html += "</tr>";
+            }
+            document.getElementById("tbody").innerHTML = html;
+        });
+        
+        
+    } else {
+        
+        socket.off('getLiveData');
+        
     }
-    document.getElementById("tbody").innerHTML = html;
 });
+
+
 
 $('#search').tooltip({trigger: 'manual'}).tooltip('show');
 
