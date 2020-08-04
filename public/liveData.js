@@ -13,7 +13,8 @@ $('#listen-active').change(function(event) {
                 html += "<td>" + data[i].name + "</td>";
                 html += "<td>" + data[i].documents + "</td>";
                 html += "<td>" + data[i].date_created + "</td>";
-                html += "<td>" + data[i].time_elapsed + "</td>";
+                // html += "<td>" + obsKeysToString(duration(data[i].date_created, getFormattedCurrentDate()), keys, ':') + "</td>";
+                html += "<td>" + obsEntriesTostring(duration(data[i].date_created, getFormattedCurrentDate()), keys, ':') + "</td>";
                 html += "</tr>";
             }
             document.getElementById("tbody").innerHTML = html;
@@ -82,8 +83,47 @@ $('#search').keyup(function() {
 
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+});
 
 
+function duration(t0, t1){
+    let d = (new Date(t1)) - (new Date(t0));
+    let Weekdays     = Math.floor(d/1000/60/60/24/7);
+    let Days         = Math.floor(d/1000/60/60/24 - Weekdays*7);
+    let Hours        = Math.floor(d/1000/60/60    - Weekdays*7*24            - Days*24);
+    let Minutes      = Math.floor(d/1000/60       - Weekdays*7*24*60         - Days*24*60         - Hours*60);
+    let Seconds      = Math.floor(d/1000          - Weekdays*7*24*60*60      - Days*24*60*60      - Hours*60*60      - Minutes*60);
+    let t = {};
+    ['Days ', 'Hours ', 'Minutes', 'Seconds'].forEach(q=>{ if (eval(q)>0) { t[q] = eval(q); } });
+    return t;
+}
+
+// console.log(duration('2019-07-17T18:35:25.235Z', '2019-07-20T00:37:28.839Z'));
+
+
+
+var keys = ['days', 'hours','minutes', 'seconds']
+// console.log(obsKeysToString(duration('2019-07-17T18:35:25.235Z', '2019-07-20T00:37:28.839Z'), keys, ':'));
+
+function obsKeysToString(o, k, sep) {    
+    return k.map(key => o[key]).filter(v => v).join(sep);
+}
+
+function obsEntriesTostring(obj){
+    return Object.entries(obj).toString().split(',').join(' ');
+}
+
+function getFormattedCurrentDate(){
+    var d = new Date();
+
+    d = d.getFullYear() + "-" + ('0' + (d.getMonth() + 1)).slice(-2) + "-" + ('0' + d.getDate()).slice(-2) + " " + ('0' + d.getHours()).slice(-2) + ":" + ('0' + d.getMinutes()).slice(-2) + ":" + ('0' + d.getSeconds()).slice(-2);
+
+    return d;
+}
+
+// console.log(getFormattedCurrentDate());
+
+// let xobj = {hello:'world'};
+// console.log(Object.entries(xobj).toString().split(',').join(':'));
 
 

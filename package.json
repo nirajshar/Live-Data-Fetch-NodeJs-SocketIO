@@ -2,9 +2,9 @@
   "name": "liveDataFetch",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index-socket.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index-socket.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "@rodrigogs/mysql-events": "^0.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mssql": "^6.2.0",
     "ora": "^4.0.4",
     "socket.io": "^2.3.0"
   }

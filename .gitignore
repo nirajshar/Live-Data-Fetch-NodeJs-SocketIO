@@ -7,3 +7,6 @@ server.js
 server.app
 nginx/
 unnecessaryfiles/
+mssql_test.js
+.env.js
+public/favicon.ico

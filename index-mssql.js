@@ -1,7 +1,7 @@
 const express = require('express');
 const socket = require('socket.io');
-const mysql = require('mysql');
 const helper = require('./helperFunctions');
+var sql = require("mssql");
 
 var app = express();
 app.use(express.static('public'));
@@ -16,52 +16,45 @@ const server = app.listen(port, function () {
 
 // Socket setup
 var io = socket(server);
-// // Static File
-// app.use(express.static('public'));
 
-const connection = mysql.createConnection({
-    host: 'localhost',
+ // config for your database
+const config = {
     user: 'root',
     password: '',
-    timezone: 'utc'  //<-here this line was missing
-});
+    server: 'localhost', 
+    database: '' 
+};
 
-connection.connect(function (err) {
+sql.connect(config, function (err) {
     if (err) throw err;
     console.log("Connected!");
-
 });
 
 
-app.get('/getLiveData', function (req, res) {
+app.get('/getLiveDataMsSql', function (req, res) {
 
-    connection.query('SELECT * FROM node_test.View_Pending', function (err, rows) {
+    // create Request object
+    var request = new sql.Request();
+
+    request.query('SELECT * FROM node_test.View_Pending', function (err, rows) {
         if (err) throw err;
         res.send(JSON.stringify(rows));
     });
 
 });
 
-// io.on('connection', function(socket){
-//     console.log('Socket connection established',socket.id);  
-//     socket.on('getLiveData', function(data) {
-//         socket.emit('getLiveData',data)
-//     });   
-// });
-
-
 io.on('connection', function (socket) {
+
     console.log('Socket connection established', socket.id);
 
-
     setInterval(function () {
-        connection.query('SELECT * FROM node_test.View_Pending', function (err, rows) {
+        request.query('SELECT * FROM node_test.View_Pending', function (err, rows) {
 
             if (rows.length > 0) {
 
                 for (var i = 0; i < rows.length; i++) {
 
-                    // rows[i]['time_elapsed'] = helper.get_time_diff(rows[i]['date_created']);
+                    rows[i]['time_elapsed'] = helper.get_time_diff(rows[i]['date_created']);
                     rows[i]['date_created'] =   new Date(rows[i]['date_created']).toISOString().
                                                 replace(/T/, ' ').      // replace T with a space
                                                 replace(/\..+/, '') ;
