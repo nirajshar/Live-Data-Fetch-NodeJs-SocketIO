@@ -17,4 +17,4 @@ Can export to CSV
 Can start / stop listening to data (Switch)
 Can search data from table
 
-![alt Live_Data](https://github.com/nirajshar/Live-Data-Fetch-NodeJs-SocketIO/blob/master/Live%20Data%20Fetch.jpg)
+![Live Data Fetch](Live Data Fetch.jpg)
